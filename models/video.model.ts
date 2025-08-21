@@ -3,7 +3,7 @@ import mongoose, { model, models, Schema } from "mongoose";
 export const Video_Dimensions = {
     width: 1080,
     height: 1920
-} as const
+} as const // const means this can not be changed 
 
 export interface IVideo{
     _id?: mongoose.Types.ObjectId,

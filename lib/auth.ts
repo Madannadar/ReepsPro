@@ -40,14 +40,14 @@ export const authOptions: NextAuthOptions = {
         })
     ],
     callbacks: {
-        async jwt({token, user}){
-            if(user){
-                token._id = user.id
+        async jwt({ token, user }) {
+            if (user) {
+                token.id = user.id
             }
             return token
         },
-        async session({session, token}){
-            if(session.user){
+        async session({ session, token }) {
+            if (session.user) {
                 session.user.id = token.id as string
             }
             return session
@@ -57,7 +57,7 @@ export const authOptions: NextAuthOptions = {
         signIn: "/login",
         error: "/login",
     },
-    session:{
+    session: {
         strategy: "jwt",
         maxAge: 30 * 24 * 60 * 60
     },

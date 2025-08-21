@@ -19,17 +19,17 @@ if (!cached) {
     cached = global.mongoose = { connection: null, promise: null };
 }
 
-export async function connectToDatabase() {
+export async function connectToDatabase() { 
     if (cached.connection) {
         return cached.connection
     }
     if (!cached.promise) {
-        const opts = {
+        const options = {
             bufferCommands: true, // 
             maxPoolSize: 10 // how many connection in a single time
         }
         cached.promise = mongoose
-            .connect(MONGODB_URI, opts)
+            .connect(MONGODB_URI, options)
             .then(() => mongoose.connection)
     }
 

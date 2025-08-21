@@ -9,7 +9,7 @@ export interface IUser {
     updatedAt?: Date,
 }
 
-const userSchema = new Schema<IUser>(
+const userSchema = new Schema<IUser>( // userschema has datatype IUser custome datatype
     {
         email: {
             type: String,
