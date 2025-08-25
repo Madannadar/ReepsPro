@@ -3,32 +3,26 @@ import { NextResponse } from "next/server";
 
 export default withAuth(
     function middleware() {
-        return NextResponse.next()
+        return NextResponse.next();
     },
     {
         callbacks: {
-            authorized: ({ token, req }) => {
+            authorized({ req, token }) {
                 const { pathname } = req.nextUrl;
-                // allow auth rrelated routes only 
                 if (
                     pathname.startsWith("/api/auth") ||
                     pathname === "/login" ||
                     pathname === "/register"
-                ) { return true } // return true beacuse the middleware will only work when authorized is true
+                )
+                    return true; 
 
-                // public
-                if (pathname === "/" || pathname.startsWith("/api/videos")) {
-                    return true
+                if (pathname === "/" || pathname.startsWith("/api/video")) {
+                    return true;
                 }
 
-                return !!token
-            }
-        }
-    }
-)
+                return !!token // now !! this will return a bool
 
-export const config = {
-    matcher: [
-        "/((?!_next/static|_next/image|favicon.ico|public).*)"
-    ]
-};
+            },
+        },
+    }
+);
